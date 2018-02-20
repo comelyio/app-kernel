@@ -14,26 +14,11 @@ declare(strict_types=1);
 
 namespace Comely\AppKernel\Http;
 
-use Comely\AppKernel;
-
 /**
- * Class Controller
+ * Class ControllerException
  * @package Comely\AppKernel\Http
  */
-abstract class Controller extends \Comely\IO\HttpRouter\Controller
+class ControllerException extends \Exception
 {
-    /** @var AppKernel */
-    protected $app;
-
-    /**
-     * @throws AppKernel\Exception\AppKernelException
-     */
-    public function callback(): void
-    {
-        // Set AppKernel instance
-        $this->app = AppKernel::getInstance();
-
-        var_dump(get_called_class());
-        var_dump($this->request()->uri());
-    }
 }
+
