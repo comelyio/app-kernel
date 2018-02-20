@@ -25,7 +25,10 @@
   },
   "autoload": {
     "psr-4": {
-      "Comely\\AppKernel\\": "src/"
-    }
+      "Comely\\AppKernel\\": "src/AppKernel"
+    },
+    "files": [
+      "src/AppKernel.php"
+    ]
   }
 }
