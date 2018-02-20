@@ -4,7 +4,7 @@
  * https://github.com/comelyio/app-kernel
  *
  * Copyright (c) 2018 Furqan A. Siddiqui <hello@furqansiddiqui.com>
- *  
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code or visit following link:
  * https://github.com/comelyio/app-kernel/blob/master/LICENSE
@@ -47,6 +47,8 @@ use Comely\Knit\Knit;
  */
 class AppKernel extends Singleton
 {
+    /** string App Name */
+    public const NAME = 'Comely App Kernel';
     /** string Comely App Kernel Version (Major.Minor.Release-Suffix) */
     public const VERSION = "1.0.0";
     /** int Comely App Kernel Version (Major * 10000 + Minor * 100 + Release) */
@@ -234,6 +236,22 @@ class AppKernel extends Singleton
     final public function dateTime(): DateTime
     {
         return $this->dateTime;
+    }
+
+    /**
+     * @return string
+     */
+    public function name(): string
+    {
+        return static::NAME;
+    }
+
+    /**
+     * @return string
+     */
+    public function version(): string
+    {
+        return static::VERSION;
     }
 
     /**
