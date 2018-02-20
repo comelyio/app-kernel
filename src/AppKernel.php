@@ -126,7 +126,9 @@ class AppKernel extends Singleton
         // Configuration
         $loadCachedConfig = $options["loadCachedConfig"] ?? $options["load_cached_config"] ?? null;
         if (!is_bool($loadCachedConfig)) {
-            throw new BootstrapException('Invalid value for "loadCachedConfig" option');
+            if(!$this->dev) {
+                throw new BootstrapException('Invalid value for "loadCachedConfig" option');
+            }
         }
 
         $this->configure($loadCachedConfig, $env); // Bootstrap configuration
