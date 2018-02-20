@@ -21,6 +21,8 @@ use Comely\IO\Cache\Cache;
 use Comely\IO\Cache\Exception\CacheException;
 use Comely\IO\Cipher\Cipher;
 use Comely\IO\Cipher\Exception\CipherException;
+use Comely\IO\HttpRouter\Exception\HttpRouterException;
+use Comely\IO\HttpRouter\Router;
 use Comely\IO\Session\ComelySession;
 use Comely\IO\Session\Exception\SessionException;
 use Comely\IO\Translator\Exception\TranslatorException;
@@ -112,5 +114,15 @@ abstract class Singleton
     public static function getKnit(): Knit
     {
         return self::getInstance()->knit();
+    }
+
+    /**
+     * @return Router
+     * @throws BootstrapException
+     * @throws HttpRouterException
+     */
+    public static function getRouter(): Router
+    {
+        return self::getInstance()->router();
     }
 }

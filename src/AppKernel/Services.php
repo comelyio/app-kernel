@@ -22,6 +22,8 @@ use Comely\IO\Cache\Exception\CacheException;
 use Comely\IO\Cipher\Cipher;
 use Comely\IO\Cipher\Exception\CipherException;
 use Comely\IO\Cipher\Keychain\CipherKey;
+use Comely\IO\HttpRouter\Exception\HttpRouterException;
+use Comely\IO\HttpRouter\Router;
 use Comely\IO\Session\ComelySession;
 use Comely\IO\Session\Exception\SessionException;
 use Comely\IO\Session\Session;
@@ -51,6 +53,8 @@ class Services
     private $translator;
     /** @var null|Knit */
     private $knit;
+    /** @var null|Router */
+    private $router;
 
     /**
      * Services constructor.
@@ -236,7 +240,7 @@ class Services
      */
     public function knit(): Knit
     {
-        if ($this->knit) {  // Already registered?
+        if ($this->knit) { // Already registered?
             return $this->knit;
         }
 
@@ -247,5 +251,22 @@ class Services
 
         $this->knit = $knit;
         return $this->knit;
+    }
+
+    /**
+     * @return Router
+     * @throws HttpRouterException
+     */
+    public function router(): Router
+    {
+        if ($this->router) { // Already registered?
+            return $this->router;
+        }
+
+        $router = new Router();
+        $router->sanitizer()->encoding("utf8");
+
+        $this->router = $router;
+        return $this->router;
     }
 }

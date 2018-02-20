@@ -34,6 +34,8 @@ use Comely\IO\Database\Database;
 use Comely\IO\Database\Exception\DatabaseException;
 use Comely\IO\FileSystem\Disk\Directory;
 use Comely\IO\FileSystem\Exception\DiskException;
+use Comely\IO\HttpRouter\Exception\HttpRouterException;
+use Comely\IO\HttpRouter\Router;
 use Comely\IO\Session\ComelySession;
 use Comely\IO\Session\Exception\SessionException;
 use Comely\IO\Translator\Exception\TranslatorException;
@@ -336,6 +338,15 @@ class AppKernel extends Singleton
     final public function knit(): Knit
     {
         return $this->services->knit();
+    }
+
+    /**
+     * @return Router
+     * @throws HttpRouterException
+     */
+    final public function router(): Router
+    {
+        return $this->services->router();
     }
 
     /**
