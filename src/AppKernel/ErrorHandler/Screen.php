@@ -224,19 +224,28 @@ class Screen
                                 <i class="icon ion-bug"></i>
                                 Triggered Errors
                             </div>
-                            <ul class="list-group">
-                                <?php foreach ($this->errors as $error) { ?>
-                                    <li class="list-group-item">
-                                        <?php printf(
-                                            '[%s] %s in file <u>%s</u> on line # <u>%d</u>',
-                                            strtoupper(strval($error["type"] ?? "")),
-                                            $error["message"] ?? "",
-                                            $error["file"] ?? "",
-                                            intval($error["line"] ?? -1)
-                                        ); ?>
-                                    </li>
-                                <?php } ?>
-                            </ul>
+                            <?php if (count($this->errors)) { ?>
+                                <ul class="list-group">
+                                    <?php foreach ($this->errors as $error) {
+                                        ?>
+                                        <li class="list-group-item">
+                                            <?php printf(
+                                                '[%s] %s in file <u>%s</u> on line # <u>%d</u>',
+                                                strtoupper(strval($error["type"] ?? "")),
+                                                $error["message"] ?? "",
+                                                $error["file"] ?? "",
+                                                intval($error["line"] ?? -1)
+                                            ); ?>
+                                        </li>
+                                        <?php
+                                    }
+                                    ?>
+                                </ul>
+                            <?php } else { ?>
+                                <div class="card-body">
+                                    <p class="card-text">No error messages were triggered</p>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
