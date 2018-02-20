@@ -29,7 +29,6 @@ use Comely\IO\Yaml\Yaml;
  * @method string env()
  * @method Config\Project project()
  * @method string timeZone()
- * @method Config\ErrorHandler errorHandler()
  * @method Config\Services services()
  */
 class Config extends AbstractConfigNode
@@ -42,8 +41,6 @@ class Config extends AbstractConfigNode
     private $project;
     /** @var string */
     private $timeZone;
-    /** @var Config\ErrorHandler */
-    private $errorHandler;
     /** @var Config\Services */
     private $services;
 
@@ -81,14 +78,6 @@ class Config extends AbstractConfigNode
         if (!$this->timeZone || !is_string($this->timeZone)) {
             throw ConfigException::PropError('time_zone', 'Enter a valid timezone (i.e. "Europe/London")');
         }
-
-        // Error handling
-        $errorHandler = $config["error_handler"] ?? $config["errorHandler"] ?? null;
-        if (!is_array($errorHandler)) {
-            throw ConfigException::PropError('error_handler', 'Node must contain error handling specifications');
-        }
-
-        $this->errorHandler = new AppKernel\Config\ErrorHandler($errorHandler);
 
         // Databases
         $this->dbs = [];
