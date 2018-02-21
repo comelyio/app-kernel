@@ -83,17 +83,31 @@ class AppKernel extends Singleton
     /**
      * @param array $options
      * @param string $env
+     * @param bool $terminate
      * @return AppKernel
-     * @throws BootstrapException
+     * @throws AppKernelException
      */
-    final public static function Bootstrap(array $options, string $env): self
+    final public static function Bootstrap(array $options, string $env, $terminate = true): self
     {
         if (static::$instance) {
             throw new BootstrapException('AppKernel instance already bootstrapped');
         }
 
-        self::$instance = new self($options, $env);
-        return self::$instance;
+        try {
+            static::$instance = new static($options, $env);
+        } catch (AppKernelException $e) {
+            if ($terminate) { // Display error screen
+                $rootPath = $options["rootPath"] ?? $options["root_path"] ?? $options["root_dir"] ?? "";
+                (new ErrorHandler\Screen(true, [], strlen($rootPath), null))
+                    ->send($e); // Display screen
+
+                exit(); // Kill execution
+            }
+
+            throw $e;
+        }
+
+        return static::$instance;
     }
 
     /**
@@ -128,7 +142,7 @@ class AppKernel extends Singleton
         // Configuration
         $loadCachedConfig = $options["loadCachedConfig"] ?? $options["load_cached_config"] ?? null;
         if (!is_bool($loadCachedConfig)) {
-            if(!$this->dev) {
+            if (!$this->dev) {
                 throw new BootstrapException('Invalid value for "loadCachedConfig" option');
             }
         }
