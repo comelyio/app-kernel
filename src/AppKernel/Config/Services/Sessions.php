@@ -26,9 +26,9 @@ use Comely\AppKernel\Exception\ConfigException;
 class Sessions extends AbstractConfigNode
 {
     /** @var string */
-    private $encrypt;
+    protected $encrypt;
     /** @var SessionsCookie */
-    private $cookie;
+    protected $cookie;
 
     /**
      * Sessions constructor.

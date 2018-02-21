@@ -26,9 +26,9 @@ use Comely\AppKernel\Exception\ConfigException;
 class Translator extends AbstractConfigNode
 {
     /** @var string */
-    private $fallBack;
+    protected $fallBack;
     /** @var bool */
-    private $caching;
+    protected $caching;
 
     /**
      * Translator constructor.

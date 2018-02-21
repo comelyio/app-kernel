@@ -28,13 +28,13 @@ use Comely\AppKernel\Exception\ConfigException;
 class Cache extends AbstractConfigNode
 {
     /** @var string */
-    private $engine;
+    protected $engine;
     /** @var string */
-    private $host;
+    protected $host;
     /** @var int */
-    private $port;
+    protected $port;
     /** @var bool */
-    private $terminate;
+    protected $terminate;
 
     /**
      * Cache constructor.

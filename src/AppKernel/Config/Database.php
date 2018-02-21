@@ -29,17 +29,17 @@ use Comely\AppKernel\Exception\ConfigException;
 class Database extends AbstractConfigNode
 {
     /** @var string */
-    private $driver;
+    protected $driver;
     /** @var string */
-    private $host;
+    protected $host;
     /** @var null|int */
-    private $port;
+    protected $port;
     /** @var string */
-    private $name;
+    protected $name;
     /** @var null|string */
-    private $username;
+    protected $username;
     /** @var null|string */
-    private $password;
+    protected $password;
 
     /**
      * Database constructor.

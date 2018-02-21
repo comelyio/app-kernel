@@ -33,15 +33,15 @@ use Comely\AppKernel\Config\Services\Translator;
 class Services extends AbstractConfigNode
 {
     /** @var null|Cache */
-    private $cache;
+    protected $cache;
     /** @var null|Cipher */
-    private $cipher;
+    protected $cipher;
     /** @var null|Mailer */
-    private $mailer;
+    protected $mailer;
     /** @var null|Sessions */
-    private $sessions;
+    protected $sessions;
     /** @var null|Translator */
-    private $translator;
+    protected $translator;
 
     /**
      * Services constructor.

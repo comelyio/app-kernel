@@ -28,13 +28,13 @@ use Comely\AppKernel\Exception\ConfigException;
 class Mailer extends AbstractConfigNode
 {
     /** @var string */
-    private $agent;
+    protected $agent;
     /** @var string */
-    private $senderName;
+    protected $senderName;
     /** @var string */
-    private $senderEmail;
+    protected $senderEmail;
     /** @var MailerSMTP */
-    private $smtp;
+    protected $smtp;
 
     /**
      * Mailer constructor.

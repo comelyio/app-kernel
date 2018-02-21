@@ -27,13 +27,13 @@ use Comely\AppKernel\Exception\ConfigException;
 class Project extends AbstractConfigNode
 {
     /** @var string */
-    private $name;
+    protected $name;
     /** @var string */
-    private $domain;
+    protected $domain;
     /** @var bool */
-    private $https;
+    protected $https;
     /** @var string */
-    private $url;
+    protected $url;
 
     /**
      * Project constructor.

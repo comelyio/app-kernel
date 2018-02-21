@@ -32,21 +32,21 @@ use Comely\AppKernel\Exception\ConfigException;
 class MailerSMTP extends AbstractConfigNode
 {
     /** @var string */
-    private $host;
+    protected $host;
     /** @var int */
-    private $port;
+    protected $port;
     /** @var int */
-    private $timeOut;
+    protected $timeOut;
     /** @var bool */
-    private $tls;
+    protected $tls;
     /** @var null|string */
-    private $auth;
+    protected $auth;
     /** @var null|string */
-    private $username;
+    protected $username;
     /** @var null|string */
-    private $password;
+    protected $password;
     /** @var null|string */
-    private $serverName;
+    protected $serverName;
 
     /**
      * MailerSMTP constructor.

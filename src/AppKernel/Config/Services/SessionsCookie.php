@@ -31,17 +31,17 @@ use Comely\Kernel\Toolkit\Time;
 class SessionsCookie extends AbstractConfigNode
 {
     /** @var string */
-    private $name;
+    protected $name;
     /** @var string */
-    private $expire;
+    protected $expire;
     /** @var string */
-    private $path;
+    protected $path;
     /** @var string */
-    private $domain;
+    protected $domain;
     /** @var bool */
-    private $secure;
+    protected $secure;
     /** @var bool */
-    private $httpOnly;
+    protected $httpOnly;
 
     /**
      * SessionsCookie constructor.
