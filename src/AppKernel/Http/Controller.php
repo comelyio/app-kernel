@@ -76,7 +76,7 @@ abstract class Controller extends \Comely\IO\HttpRouter\Controller
 
     /**
      * @param string $message
-     * @param int $code
+     * @param int|null $code
      */
-    abstract public function error(string $message, int $code): void;
+    abstract public function error(string $message, ?int $code = null): void;
 }
