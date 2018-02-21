@@ -96,7 +96,7 @@ class MailerSMTP extends AbstractConfigNode
         $this->auth = $auth;
 
         // Username
-        $username = $smtp["username"] ?? $smtp["user"] ?? false;
+        $username = $smtp["username"] ?? $smtp["user"] ?? null;
         if (!is_string($username) && !is_null($username)) {
             throw ConfigException::PropError('services.mailer.smtp', 'Property "username" must be a string or NULL');
         }
@@ -104,7 +104,7 @@ class MailerSMTP extends AbstractConfigNode
         $this->username = $username;
 
         // Password
-        $password = $smtp["password"] ?? $smtp["pass"] ?? false;
+        $password = $smtp["password"] ?? $smtp["pass"] ?? null;
         if (!is_string($password) && !is_null($password)) {
             throw ConfigException::PropError('services.mailer.smtp', 'Property "password" must be a string or NULL');
         }
@@ -112,7 +112,7 @@ class MailerSMTP extends AbstractConfigNode
         $this->password = $password;
 
         // ServerName
-        $serverName = $smtp["server_name"] ?? $smtp["serverName"] ?? false;
+        $serverName = $smtp["server_name"] ?? $smtp["serverName"] ?? null;
         if (!is_string($serverName) && !is_null($serverName)) {
             throw ConfigException::PropError('services.mailer.smtp', 'Property "server_name" must be a string or NULL');
         }
