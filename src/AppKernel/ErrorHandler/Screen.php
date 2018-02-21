@@ -211,7 +211,7 @@ class Screen
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <div class="card">
+                <div class="card mb-4">
                     <div class="card-header">
                         <i class="icon ion-magnet"></i>
                         Debug backtrace
@@ -230,7 +230,7 @@ class Screen
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="card">
+                <div class="card mb-4">
                     <div class="card-header">
                         <i class="icon ion-bug"></i>
                         Triggered Errors
@@ -258,8 +258,7 @@ class Screen
                         </div>
                     <?php } ?>
                 </div>
-                <hr>
-                <div class="card">
+                <div class="card mb-4">
                     <div class="card-header">
                         <i class="icon ion-network"></i>
                         Package
