@@ -15,7 +15,9 @@ declare(strict_types=1);
 namespace Comely\AppKernel\ErrorHandler;
 
 use Comely\AppKernel;
+use Comely\Fluent\Fluent;
 use Comely\Kernel\Comely;
+use Comely\Knit\Knit;
 
 /**
  * Class Screen
@@ -110,6 +112,10 @@ class Screen
         body {
             font-size: 1.2em;
             font-weight: 300;
+        }
+
+        a {
+            color: #166f98;
         }
 
         a.info {
@@ -251,6 +257,43 @@ class Screen
                             <p class="card-text">No error messages were triggered</p>
                         </div>
                     <?php } ?>
+                </div>
+                <hr>
+                <div class="card">
+                    <div class="card-header">
+                        <i class="icon ion-network"></i>
+                        Package
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="https://github.com/comelyio/comely" target="_blank">
+                                <i class="icon ion-social-github"></i>
+                                <span class="font-weight-normal">Comely</span> IO Components
+                            </a>
+                            <span class="text-muted float-right">v<?php print Comely::VERSION ?></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="https://github.com/comelyio/app-kernel" target="_blank">
+                                <i class="icon ion-social-github"></i>
+                                App Kernel
+                            </a>
+                            <span class="text-muted float-right">v<?php print AppKernel::VERSION ?></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="https://github.com/comelyio/app-kernel" target="_blank">
+                                <i class="icon ion-social-github"></i>
+                                Fluent ORM
+                            </a>
+                            <span class="text-muted float-right">v<?php print Fluent::VERSION ?></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="https://github.com/comelyio/app-kernel" target="_blank">
+                                <i class="icon ion-social-github"></i>
+                                Knit
+                            </a>
+                            <span class="text-muted float-right">v<?php print Knit::VERSION ?></span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
