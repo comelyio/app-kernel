@@ -279,14 +279,14 @@ class Screen
                             <span class="text-muted float-right">v<?php print AppKernel::VERSION ?></span>
                         </li>
                         <li class="list-group-item">
-                            <a href="https://github.com/comelyio/app-kernel" target="_blank">
+                            <a href="https://github.com/comelyio/fluent" target="_blank">
                                 <i class="icon ion-social-github"></i>
                                 Fluent ORM
                             </a>
                             <span class="text-muted float-right">v<?php print Fluent::VERSION ?></span>
                         </li>
                         <li class="list-group-item">
-                            <a href="https://github.com/comelyio/app-kernel" target="_blank">
+                            <a href="https://github.com/comelyio/knit" target="_blank">
                                 <i class="icon ion-social-github"></i>
                                 Knit
                             </a>
