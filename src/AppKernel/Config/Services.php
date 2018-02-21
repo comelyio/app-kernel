@@ -14,11 +14,12 @@ declare(strict_types=1);
 
 namespace Comely\AppKernel\Config;
 
-use Comely\AppKernel\Config\App\Services\Cache;
-use Comely\AppKernel\Config\App\Services\Cipher;
-use Comely\AppKernel\Config\App\Services\Mailer;
-use Comely\AppKernel\Config\App\Services\Sessions;
-use Comely\AppKernel\Config\App\Services\Translator;
+use Comely\AppKernel\Config\Services\Cache;
+use Comely\AppKernel\Config\Services\Cipher;
+use Comely\AppKernel\Config\Services\Mailer;
+use Comely\AppKernel\Config\Services\Sessions;
+use Comely\AppKernel\Config\Services\Translator;
+
 
 /**
  * Class Services
