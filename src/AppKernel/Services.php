@@ -78,7 +78,7 @@ class Services
         }
 
         $cacheConfig = $this->kernel->config()->services()->cache();
-        if (!$cacheConfig instanceof AppKernel\Config\App\Services\Cache) {
+        if (!$cacheConfig instanceof AppKernel\Config\Services\Cache) {
             throw ServicesException::ServiceError("cache", 'No configuration found');
         }
 
@@ -123,7 +123,7 @@ class Services
         }
 
         $translatorConfig = $this->kernel->config()->services()->translator();
-        if (!$translatorConfig instanceof AppKernel\Config\App\Services\Translator) {
+        if (!$translatorConfig instanceof AppKernel\Config\Services\Translator) {
             throw ServicesException::ServiceError("translator", 'No configuration found');
         }
 
@@ -157,7 +157,7 @@ class Services
         }
 
         $cipherConfig = $this->kernel->config()->services()->cipher();
-        if (!$cipherConfig instanceof AppKernel\Config\App\Services\Cipher) {
+        if (!$cipherConfig instanceof AppKernel\Config\Services\Cipher) {
             throw ServicesException::ServiceError("cipher", 'No configuration found');
         }
 
@@ -191,7 +191,7 @@ class Services
         }
 
         $sessionsConfig = $this->kernel->config()->services()->sessions();
-        if (!$sessionsConfig instanceof AppKernel\Config\App\Services\Sessions) {
+        if (!$sessionsConfig instanceof AppKernel\Config\Services\Sessions) {
             throw ServicesException::ServiceError("sessions", 'No configuration found');
         }
 
