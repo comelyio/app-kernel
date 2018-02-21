@@ -147,10 +147,8 @@ class Directories
      */
     private function dir(string $prop, bool $writable = false): Directory
     {
-        $prop = strtoupper($prop);
-        $directoryPath = $this->kernel->constant("DIR_" . $prop);
-        $prop = ucfirst($prop);
-
+        $directoryPath = $this->kernel->constant("DIR_" . strtoupper($prop));
+        $prop = ucfirst(strtolower($prop));
         try {
             $directory = $this->root->dir($directoryPath);
             if (!$directory->permissions()->read) {
