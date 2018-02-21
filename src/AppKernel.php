@@ -175,7 +175,7 @@ class AppKernel extends Singleton
         if ($loadCached) {
             try { // Check if cached config exists
                 $cachedConfigFile = $this->directories->cache()
-                    ->file(sprintf('bootstrap.config.%s.php.cache', $env));
+                    ->file(sprintf('bootstrap.config.env_%s.php.cache', $env));
             } catch (DiskException $e) {
             }
 
@@ -187,7 +187,7 @@ class AppKernel extends Singleton
                         throw new ConfigException('Failed to read cached configuration file');
                     }
 
-                    $cachedConfig = unserialize($cachedConfig);
+                    $cachedConfig = unserialize(base64_decode($cachedConfig));
                     if (!$cachedConfig || !$cachedConfig instanceof Config) {
                         throw new ConfigException('Cached configuration file corrupt or incomplete');
                     }
@@ -217,7 +217,7 @@ class AppKernel extends Singleton
             try {
                 $cacheDirectory = $this->directories->cache();
                 $cacheDirectory->write(
-                    sprintf('bootstrap.config.%s.php.cache', $env),
+                    sprintf('bootstrap.config.env_%s.php.cache', $env),
                     base64_encode(serialize($this->config)),
                     false,
                     true
