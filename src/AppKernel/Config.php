@@ -62,7 +62,7 @@ class Config extends AbstractConfigNode
         // Read YAML configuration
         try {
             $config = Yaml::Parse($kernel->directories()->config()->suffixed('env_' . $env . '.yml'))
-                ->evaluateBooleans(false)
+                ->evaluateBooleans(true)
                 ->generate();
         } catch (YamlException $e) {
             throw new BootstrapException(
