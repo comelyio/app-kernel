@@ -4,7 +4,7 @@
  * https://github.com/comelyio/app-kernel
  *
  * Copyright (c) 2018 Furqan A. Siddiqui <hello@furqansiddiqui.com>
- *  
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code or visit following link:
  * https://github.com/comelyio/app-kernel/blob/master/LICENSE
@@ -147,23 +147,26 @@ class Directories
      */
     private function dir(string $prop, bool $writable = false): Directory
     {
-        $directoryPath = $this->kernel->constant("DIR_" . strtoupper($prop));
+        $prop = strtoupper($prop);
+        $directoryPath = $this->kernel->constant("DIR_" . $prop);
+        $prop = ucfirst($prop);
+
         try {
             $directory = $this->root->dir($directoryPath);
             if (!$directory->permissions()->read) {
                 throw new AppKernelException(
-                    sprintf('"%s" directory "%s" is not readable', $prop, $directoryPath)
+                    sprintf('%s directory "%s" is not readable', $prop, $directoryPath)
                 );
             }
 
             if ($writable && !$directory->permissions()->write) {
                 throw new AppKernelException(
-                    sprintf('"%s" directory "%s" is not writable', $prop, $directoryPath)
+                    sprintf('%s directory "%s" is not writable', $prop, $directoryPath)
                 );
             }
         } catch (DiskException $e) {
             throw new AppKernelException(
-                sprintf('No such "%s" directory found "%s" in app root', $prop, $directoryPath)
+                sprintf('No such %s directory found "%s" in app root', $prop, $directoryPath)
             );
         }
 
