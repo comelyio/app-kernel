@@ -15,10 +15,10 @@ declare(strict_types=1);
 namespace Comely\AppKernel\Http;
 
 /**
- * Class ControllerException
+ * Class AppControllerException
  * @package Comely\AppKernel\Http
  */
-class ControllerException extends \Exception
+class AppControllerException extends \Exception
 {
 }
 

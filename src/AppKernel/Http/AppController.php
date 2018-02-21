@@ -25,6 +25,8 @@ abstract class AppController extends Controller
 {
     /** @var AppKernel */
     protected $app;
+    /** @var Client */
+    protected $client;
 
     /**
      * @throws AppKernel\Exception\AppKernelException
@@ -34,5 +36,8 @@ abstract class AppController extends Controller
     {
         // Set AppKernel instance
         $this->app = AppKernel::getInstance();
+
+        // Client
+        $this->client = new Client($this->request()->headers());
     }
 }
