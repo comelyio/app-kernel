@@ -224,7 +224,7 @@ class AppKernel extends Singleton
                 );
             } catch (DiskException $e) {
                 trigger_error(
-                    sprintf('Failed to write bootstrap config. file in cache directory. %s', $e->getMessage()),
+                    sprintf('Failed to write bootstrap config file in cache directory. %s', $e->getMessage()),
                     E_USER_WARNING
                 );
             }
