@@ -12,14 +12,14 @@
 
 declare(strict_types=1);
 
-namespace Comely\AppKernel\Config\App\Services;
+namespace Comely\AppKernel\Config\Services;
 
 use Comely\AppKernel\Config\AbstractConfigNode;
 use Comely\AppKernel\Exception\ConfigException;
 
 /**
  * Class Mailer
- * @package Comely\AppKernel\Config\App\Services
+ * @package Comely\AppKernel\Config\Services
  * @method string agent()
  * @method string senderName()
  * @method string senderEmail()

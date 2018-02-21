@@ -12,14 +12,14 @@
 
 declare(strict_types=1);
 
-namespace Comely\AppKernel\Config\App\Services;
+namespace Comely\AppKernel\Config\Services;
 
 use Comely\AppKernel\Config\AbstractConfigNode;
 use Comely\AppKernel\Exception\ConfigException;
 
 /**
  * Class Cipher
- * @package Comely\AppKernel\Config\App\Services
+ * @package Comely\AppKernel\Config\Services
  */
 class Cipher extends AbstractConfigNode
 {
