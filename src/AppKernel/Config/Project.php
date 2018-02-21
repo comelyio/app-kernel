@@ -65,7 +65,7 @@ class Project extends AbstractConfigNode
         // HTTPS
         $this->https = $project["https"];
         if (!is_bool($this->https)) {
-            throw new ConfigException('project.https', 'Invalid value (must be "yes" or "no")');
+            throw ConfigException::PropError('project.https', 'Invalid value (must be "yes" or "no")');
         }
 
         // URL
