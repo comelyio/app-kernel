@@ -26,10 +26,6 @@ use Comely\IO\Yaml\Yaml;
 /**
  * Class Config
  * @package Comely\AppKernel
- * @method string env()
- * @method Config\Project project()
- * @method string timeZone()
- * @method Config\Services services()
  */
 class Config extends AbstractConfigNode
 {
@@ -118,10 +114,42 @@ class Config extends AbstractConfigNode
     }
 
     /**
+     * @return string
+     */
+    public function env(): string
+    {
+        return $this->env;
+    }
+
+    /**
+     * @return string
+     */
+    public function timeZone(): string
+    {
+        return $this->timeZone;
+    }
+
+    /**
      * @return array
      */
     public function databases(): array
     {
         return $this->dbs;
+    }
+
+    /**
+     * @return Config\Project
+     */
+    public function project(): AppKernel\Config\Project
+    {
+        return $this->project;
+    }
+
+    /**
+     * @return Config\Services
+     */
+    public function services(): AppKernel\Config\Services
+    {
+        return $this->services;
     }
 }
