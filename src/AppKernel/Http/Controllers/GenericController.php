@@ -117,7 +117,7 @@ abstract class GenericController extends AppController
      * @throws \Comely\IO\HttpRouter\Exception\HttpRouterException
      * @throws \Comely\Knit\Exception\KnitException
      */
-    public function display(Template $template): void
+    public function body(Template $template): void
     {
         // Todo: assign flash message
         $template->assign("config", $this->app->config()->project()->array());
@@ -128,5 +128,15 @@ abstract class GenericController extends AppController
 
         // Populate Response "body" param
         $this->response()->body($template->knit());
+    }
+
+    /**
+     * @param Template $template
+     * @throws \Comely\IO\HttpRouter\Exception\HttpRouterException
+     * @throws \Comely\Knit\Exception\KnitException
+     */
+    public function display(Template $template): void
+    {
+        $this->body($template);
     }
 }
