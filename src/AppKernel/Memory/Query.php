@@ -115,7 +115,7 @@ class Query
 
     /**
      * @param callable|null $callback
-     * @return null|object
+     * @return null|object|mixed
      * @throws MemoryException
      */
     public function fetch(callable $callback = null)
