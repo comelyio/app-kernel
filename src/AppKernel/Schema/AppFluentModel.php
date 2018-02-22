@@ -10,31 +10,44 @@
  * https://github.com/comelyio/app-kernel/blob/master/LICENSE
  */
 
-declare(strict_types=1);
-
 namespace Comely\AppKernel\Schema;
 
 use Comely\AppKernel;
 use Comely\AppKernel\Exception\AppKernelException;
-use Comely\Fluent\Database\Table;
+use Comely\Fluent\ORM\Model;
 
 /**
- * Class FluentTable
+ * Class AppFluentModel
  * @package Comely\AppKernel\Schema
  */
-abstract class FluentTable extends Table
+abstract class AppFluentModel extends Model
 {
-    /** @var AppKernel */
+    /** @var null|AppKernel */
     protected $app;
-    /** @var AppKernel\Memory */
-    protected $memory;
 
     /**
+     * Set $app prop with AppKernel instance
      * @throws AppKernelException
      */
-    public function callback()
+    public function onLoad()
     {
         $this->app = AppKernel::getInstance();
-        $this->memory = $this->app->memory();
+    }
+
+    /**
+     * Clear $app property
+     */
+    public function onSleep()
+    {
+        $this->app = null;
+    }
+
+    /**
+     * Set $app prop with AppKernel instance
+     * @throws AppKernelException
+     */
+    public function onWakeup()
+    {
+        $this->app = AppKernel::getInstance();
     }
 }
