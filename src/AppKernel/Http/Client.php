@@ -39,13 +39,10 @@ class Client
      */
     public function __construct(Headers $headers)
     {
-        $this->https = $headers->get("HTTPS") ? true : false;
-        $this->ipAddress = $headers->get("HTTP_CF_CONNECTING_IP") ?? $headers->get("REMOTE_ADDR");
-        $this->origin = $headers->get("HTTP_REFERER");
-        $this->agent = $headers->get("HTTP_USER_AGENT");
-        $this->port = $headers->get("SERVER_PORT");
-        if ($this->port) {
-            $this->port = intval($this->port);
-        }
+        $this->https = $_SERVER["HTTPS"] ? true : false;
+        $this->ipAddress = $_SERVER["HTTP_CF_CONNECTING_IP"] ?? $_SERVER["REMOTE_ADDR"] ?? null;
+        $this->origin = $headers->get("referer");
+        $this->agent = $headers->get("user-agent");
+        $this->port = $_SERVER["SERVER_PORT"] ? intval($_SERVER["SERVER_PORT"]) : null;
     }
 }
