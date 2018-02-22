@@ -21,6 +21,7 @@ use Comely\AppKernel\Exception\ConfigException;
 use Comely\AppKernel\Exception\BootstrapException;
 use Comely\IO\Yaml\Exception\YamlException;
 use Comely\IO\Yaml\Yaml;
+use Comely\Kernel\Comely;
 
 
 /**
@@ -39,6 +40,8 @@ class Config extends AbstractConfigNode
     private $timeZone;
     /** @var Config\Services */
     private $services;
+    /** @var array */
+    private $nodes;
 
     /**
      * Config constructor.
@@ -111,6 +114,39 @@ class Config extends AbstractConfigNode
         }
 
         $this->services = new AppKernel\Config\Services($services);
+
+        // Custom configuration nodes
+        unset($config["time_zone"], $config["timeZone"], $config["databases"], $config["project"], $config["services"]);
+        $this->nodes = $this->populateCustomNodes($config);
+    }
+
+    /**
+     * @param array $node
+     * @return array
+     */
+    private function populateCustomNodes(array $node): array
+    {
+        $result = [];
+        foreach ($node as $key => $value) {
+            if (!is_string($key) || !preg_match('/^[a-z0-9\.\-\_]+$/', $key)) {
+                continue;
+            }
+
+            $key = Comely::camelCase(strval($key));
+            switch (gettype($value)) {
+                case "string":
+                case "integer":
+                case "boolean":
+                case "NULL":
+                    $result[$key] = $value;
+                    break;
+                case "array":
+                    $result[$key] = $this->populateCustomNodes($value);
+                    break;
+            }
+        }
+
+        return $result;
     }
 
     /**
@@ -151,5 +187,14 @@ class Config extends AbstractConfigNode
     public function services(): AppKernel\Config\Services
     {
         return $this->services;
+    }
+
+    /**
+     * @param string $node
+     * @return array|null
+     */
+    public function node(string $node): ?array
+    {
+        return $this->nodes[$node] ?? null;
     }
 }
