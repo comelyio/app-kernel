@@ -71,4 +71,17 @@ class Project extends AbstractConfigNode
         // URL
         $this->url = sprintf('%s://%s/', $this->https ? "https" : "http", $this->domain);
     }
+
+    /**
+     * @return array
+     */
+    public function array(): array
+    {
+        return [
+            "name" => $this->name,
+            "domain" => $this->domain,
+            "https" => $this->https,
+            "url" => $this->url
+        ];
+    }
 }
