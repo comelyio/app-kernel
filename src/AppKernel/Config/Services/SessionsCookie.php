@@ -82,7 +82,7 @@ class SessionsCookie extends AbstractConfigNode
 
         // Path
         $path = $cookie["path"] ?? null;
-        if (!is_string($path)) {
+        if (!is_string($path) && !is_null($path)) {
             throw ConfigException::PropError('services.sessions.cookie', 'Property "path" must be string or NULL');
         }
 
@@ -90,7 +90,7 @@ class SessionsCookie extends AbstractConfigNode
 
         // Domain
         $domain = $cookie["domain"] ?? null;
-        if (!is_string($domain)) {
+        if (!is_string($domain) && !is_null($domain)) {
             throw ConfigException::PropError('services.sessions.cookie', 'Property "domain" must be string or NULL');
         }
 
