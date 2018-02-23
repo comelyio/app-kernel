@@ -28,7 +28,7 @@ use Comely\Knit\Template;
 abstract class GenericController extends AppController
 {
     /** @var null|ComelySession */
-    protected $session;
+    private $session;
 
     /**
      * @return ComelySession
