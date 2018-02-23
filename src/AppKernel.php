@@ -388,8 +388,10 @@ class AppKernel extends Singleton
 
         // Caching
         try {
-            $cache = $this->cache();
-            $this->memory->caching($cache);
+            if($this->config->services()->cache()) { // Cache configured?
+                $cache = $this->cache();
+                $this->memory->caching($cache);
+            }
         } catch (\Exception $e) {
         }
 
