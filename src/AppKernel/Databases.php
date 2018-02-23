@@ -74,7 +74,8 @@ class Databases
         }
 
         $server = Database::Server($driver)
-            ->host($dbConfig->host());
+            ->host($dbConfig->host())
+            ->database($dbConfig->name());
 
         if ($dbConfig->port()) {
             $server->port($dbConfig->port());
