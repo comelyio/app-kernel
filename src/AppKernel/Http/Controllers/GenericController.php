@@ -27,9 +27,6 @@ use Comely\Knit\Template;
  */
 abstract class GenericController extends AppController
 {
-    /** @var null|ComelySession */
-    private $session;
-
     /**
      * @return ComelySession
      * @throws \Comely\AppKernel\Exception\AppKernelException
