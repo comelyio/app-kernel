@@ -120,8 +120,10 @@ abstract class GenericController extends AppController
             }
         }
 
-        $this->response()->set("errors", $this->app->errorHandler()->errors()); // Errors
         $this->response()->set("messages", $this->messages->array()); // Messages
+        if ($this->app->dev()) {
+            $this->response()->set("errors", $this->app->errorHandler()->errors()); // Errors
+        }
         $this->onFinish(); // Event callback: onFinish
     }
 
