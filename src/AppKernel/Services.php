@@ -269,4 +269,13 @@ class Services
         $this->router = $router;
         return $this->router;
     }
+
+    /**
+     * @param string $service
+     * @return bool
+     */
+    public function has(string $service): bool
+    {
+        return property_exists($this, $service) && isset($this->$service) ? true : false;
+    }
 }
