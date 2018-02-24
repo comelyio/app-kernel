@@ -31,6 +31,8 @@ abstract class GenericController extends AppController
 {
     /** @var null|Security */
     private $security;
+    /** @var null|Knit */
+    private $knit;
 
     /**
      * @return ComelySession
@@ -152,7 +154,12 @@ abstract class GenericController extends AppController
      */
     public function knit(): Knit
     {
-        return $this->app->knit();
+        if (!$this->knit) {
+            $this->knit = $this->app->knit();
+            // One time execution:
+            $this->knit->modifiers()->registerDefaultModifiers();
+        }
+        return $this->knit;
     }
 
     /**
