@@ -112,6 +112,7 @@ abstract class GenericController extends AppController
 
             if ($this->app->dev()) {
                 $this->response()->set("trace", $this->getExceptionTrace($e));
+                $this->response()->set("errors", $this->app->errorHandler()->errors());
             }
         }
 
