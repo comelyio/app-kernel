@@ -110,6 +110,7 @@ abstract class GenericController extends AppController
 
             $this->messages->danger($e->getMessage());
             if ($this->app->dev()) {
+                $this->response()->set("file", sprintf('%s:%d', $e->getFile(), $e->getLine()));
                 $this->response()->set("trace", $this->getExceptionTrace($e));
             }
         }
