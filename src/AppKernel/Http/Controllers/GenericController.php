@@ -77,7 +77,7 @@ abstract class GenericController extends AppController
         $this->response()->format("application/json");
 
         // Prepare response
-        $this->response()->set("success", false);
+        $this->response()->set("status", false);
         $this->response()->set("messages", null);
 
         // Controller method
