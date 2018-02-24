@@ -126,6 +126,7 @@ abstract class GenericController extends AppController
     {
         return array_map(function (array $trace) {
             unset($trace["args"]);
+            return $trace;
         }, $e->getTrace());
     }
 
