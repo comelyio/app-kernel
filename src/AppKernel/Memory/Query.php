@@ -114,11 +114,11 @@ class Query
     }
 
     /**
-     * @param callable|null $callback
-     * @return null|object|mixed
+     * @param \Closure|null $callback
+     * @return null|object
      * @throws MemoryException
      */
-    public function fetch(callable $callback = null)
+    public function fetch(?\Closure $callback = null)
     {
         if ($callback) {
             $this->callback($callback);

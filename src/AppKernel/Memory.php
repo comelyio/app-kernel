@@ -91,6 +91,7 @@ class Memory
             $object = call_user_func($callback);
             if (is_object($object)) {
                 $this->set($key, $object, $query->_cache, $query->_cacheTTL);
+                return $object;
             }
         }
 
@@ -117,7 +118,7 @@ class Memory
         $this->instances[$key] = $object;
 
         // Store in cache?
-        if($this->cache && $cache) {
+        if ($this->cache && $cache) {
             try {
                 $this->cache->set($key, clone $object, $ttl);
             } catch (CacheException $e) {
