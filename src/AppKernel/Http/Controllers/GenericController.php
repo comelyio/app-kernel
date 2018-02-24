@@ -19,6 +19,7 @@ use Comely\AppKernel\Http\AppControllerException;
 use Comely\AppKernel\Http\Security;
 use Comely\IO\Session\ComelySession;
 use Comely\Kernel\Comely;
+use Comely\Kernel\Exception\ComelyException;
 use Comely\Knit\Knit;
 use Comely\Knit\Template;
 
@@ -101,8 +102,12 @@ abstract class GenericController extends AppController
 
             $this->onLoad(); // Event callback: onLoad
             call_user_func([$this, $controllerMethod]);
-        } catch (AppControllerException $e) {
+        } catch (ComelyException $e) {
             $this->response()->set("message", $e->getMessage());
+
+            if ($this->app->dev()) {
+                $this->response()->set("trace", $e->getTrace());
+            }
         }
 
         $this->onFinish(); // Event callback: onFinish
