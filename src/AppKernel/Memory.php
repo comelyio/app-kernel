@@ -133,7 +133,7 @@ class Memory
      */
     private function validateKey(string $key)
     {
-        if (!preg_match('/^[a-z0-9\-\.\_]{3,64}$/i', $key)) {
+        if (!preg_match('/^[\w\-\.\@\+]{3,64}$/i', $key)) {
             throw new MemoryException('Invalid key');
         }
     }
