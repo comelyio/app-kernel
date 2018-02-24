@@ -104,7 +104,7 @@ abstract class GenericController extends AppController
             $this->onLoad(); // Event callback: onLoad
             call_user_func([$this, $controllerMethod]);
         } catch (ComelyException $e) {
-            if ($this->response()->format() !== "text/html") {
+            if (preg_match('/html/', $this->response()->format())) {
                 throw $e; // Throw caught exception so it may be picked by Exception Handler (screen)
             }
 
