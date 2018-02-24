@@ -145,12 +145,24 @@ abstract class GenericController extends AppController
 
     /**
      * @param Template $template
-     * @throws \Comely\IO\HttpRouter\Exception\HttpRouterException
-     * @throws \Comely\Knit\Exception\KnitException
+     * @throws \Comely\AppKernel\Exception\AppKernelException
+     * @throws \Comely\AppKernel\Exception\ServicesException
+     * @throws \Comely\IO\HttpRouter\Exception\ControllerResponseException
+     * @throws \Comely\IO\Session\Exception\SessionException
+     * @throws \Comely\Knit\Exception\CachingException
+     * @throws \Comely\Knit\Exception\CompilerException
+     * @throws \Comely\Knit\Exception\SandboxException
+     * @throws \Comely\Knit\Exception\TemplateException
      */
     public function body(Template $template): void
     {
-        // Todo: assign flash message
+        $flashMessages = null;
+        if ($this->app->services()->has("comelySession")) {
+            $flashMessages = $this->session()->flash()->array();
+        }
+
+        $template->assign("flashMessages", $flashMessages);
+        $template->assign("errors", $this->app->errorHandler()->errors());
         $template->assign("config", $this->app->config()->project()->array());
         $template->assign("client", $this->client);
 
@@ -162,9 +174,16 @@ abstract class GenericController extends AppController
     }
 
     /**
+     * Alias method
      * @param Template $template
-     * @throws \Comely\IO\HttpRouter\Exception\HttpRouterException
-     * @throws \Comely\Knit\Exception\KnitException
+     * @throws \Comely\AppKernel\Exception\AppKernelException
+     * @throws \Comely\AppKernel\Exception\ServicesException
+     * @throws \Comely\IO\HttpRouter\Exception\ControllerResponseException
+     * @throws \Comely\IO\Session\Exception\SessionException
+     * @throws \Comely\Knit\Exception\CachingException
+     * @throws \Comely\Knit\Exception\CompilerException
+     * @throws \Comely\Knit\Exception\SandboxException
+     * @throws \Comely\Knit\Exception\TemplateException
      */
     public function display(Template $template): void
     {
