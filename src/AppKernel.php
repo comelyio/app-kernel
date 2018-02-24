@@ -32,6 +32,7 @@ use Comely\IO\Cipher\Cipher;
 use Comely\IO\Cipher\Exception\CipherException;
 use Comely\IO\Database\Database;
 use Comely\IO\Database\Exception\DatabaseException;
+use Comely\IO\Events\EventsHandler;
 use Comely\IO\FileSystem\Disk\Directory;
 use Comely\IO\FileSystem\Exception\DiskException;
 use Comely\IO\HttpRouter\Exception\HttpRouterException;
@@ -79,6 +80,8 @@ class AppKernel extends Singleton
     private $memory;
     /** @var Services */
     private $services;
+    /** @var EventsHandler */
+    private $events;
 
     /**
      * @param array $options
@@ -158,6 +161,7 @@ class AppKernel extends Singleton
 
         $this->databases = new Databases($this); // Databases
         $this->services = new Services($this); // Services
+        $this->events = new EventsHandler();
     }
 
     /**
@@ -294,6 +298,14 @@ class AppKernel extends Singleton
     final public function errorHandler(): ErrorHandler
     {
         return $this->errorHandler;
+    }
+
+    /**
+     * @return EventsHandler
+     */
+    final public function events(): EventsHandler
+    {
+        return $this->events;
     }
 
     /**
