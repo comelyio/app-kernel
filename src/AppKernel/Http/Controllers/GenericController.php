@@ -16,6 +16,7 @@ namespace Comely\AppKernel\Http\Controllers;
 
 use Comely\AppKernel\Http\AppController;
 use Comely\AppKernel\Http\AppControllerException;
+use Comely\AppKernel\Http\Response\Messages;
 use Comely\AppKernel\Http\Security;
 use Comely\IO\Session\ComelySession;
 use Comely\Kernel\Comely;
@@ -33,6 +34,8 @@ abstract class GenericController extends AppController
     private $security;
     /** @var null|Knit */
     private $knit;
+    /** @var Messages */
+    private $messages;
 
     /**
      * @return ComelySession
@@ -68,13 +71,14 @@ abstract class GenericController extends AppController
     final public function callback(): void
     {
         parent::callback(); // Set AppKernel instance
+        $this->messages = new Messages($this);
 
         // Default response type (despite of ACCEPT header)
         $this->response()->format("application/json");
 
         // Prepare response
         $this->response()->set("success", false);
-        $this->response()->set("message", null);
+        $this->response()->set("messages", null);
 
         // Controller method
         $httpRequestMethod = strtolower($this->request()->method());
@@ -110,16 +114,25 @@ abstract class GenericController extends AppController
                 throw $e; // Throw caught exception so it may be picked by Exception Handler (screen)
             }
 
-            $this->response()->set("message", $e->getMessage());
-
+            $this->messages->danger($e->getMessage());
             if ($this->app->dev()) {
                 $this->response()->set("trace", $this->getExceptionTrace($e));
-                $this->response()->set("errors", $this->app->errorHandler()->errors());
             }
         }
 
+        $this->response()->set("errors", $this->app->errorHandler()->errors()); // Errors
+        $this->response()->set("messages", $this->messages->array()); // Messages
         $this->onFinish(); // Event callback: onFinish
     }
+
+    /**
+     * @return Messages
+     */
+    public function messages(): Messages
+    {
+        return $this->messages;
+    }
+
 
     /**
      * @param \Exception $e
