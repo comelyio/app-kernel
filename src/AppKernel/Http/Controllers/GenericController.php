@@ -59,6 +59,7 @@ abstract class GenericController extends AppController
     }
 
     /**
+     * @throws ComelyException
      * @throws \Comely\AppKernel\Exception\AppKernelException
      * @throws \Comely\IO\HttpRouter\Exception\ControllerResponseException
      */
@@ -103,14 +104,29 @@ abstract class GenericController extends AppController
             $this->onLoad(); // Event callback: onLoad
             call_user_func([$this, $controllerMethod]);
         } catch (ComelyException $e) {
+            if ($this->response()->format() !== "text/html") {
+                throw $e; // Throw caught exception so it may be picked by Exception Handler (screen)
+            }
+
             $this->response()->set("message", $e->getMessage());
 
             if ($this->app->dev()) {
-                $this->response()->set("trace", $e->getTrace());
+                $this->response()->set("trace", $this->getExceptionTrace($e));
             }
         }
 
         $this->onFinish(); // Event callback: onFinish
+    }
+
+    /**
+     * @param \Exception $e
+     * @return array
+     */
+    private function getExceptionTrace(\Exception $e): array
+    {
+        return array_map(function (array $trace) {
+            unset($trace["args"]);
+        }, $e->getTrace());
     }
 
     /**
