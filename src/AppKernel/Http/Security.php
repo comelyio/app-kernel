@@ -14,8 +14,8 @@ declare(strict_types=1);
 
 namespace Comely\AppKernel\Http;
 
-use Comely\AppKernel\Http\Security\CSRF;
-use Comely\AppKernel\Http\Security\ObfuscatedForms;
+use Comely\IO\HttpSecurity\CSRF;
+use Comely\IO\HttpSecurity\ObfuscatedForms;
 use Comely\IO\Session\ComelySession;
 
 /**

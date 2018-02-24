@@ -16,6 +16,7 @@ namespace Comely\AppKernel\Http\Controllers;
 
 use Comely\AppKernel\Http\AppController;
 use Comely\AppKernel\Http\AppControllerException;
+use Comely\AppKernel\Http\Security;
 use Comely\IO\Session\ComelySession;
 use Comely\Kernel\Comely;
 use Comely\Knit\Knit;
@@ -27,6 +28,9 @@ use Comely\Knit\Template;
  */
 abstract class GenericController extends AppController
 {
+    /** @var null|Security */
+    private $security;
+
     /**
      * @return ComelySession
      * @throws \Comely\AppKernel\Exception\AppKernelException
@@ -36,6 +40,21 @@ abstract class GenericController extends AppController
     public function session(): ComelySession
     {
         return $this->app->services()->comelySession();
+    }
+
+    /**
+     * @return Security
+     * @throws \Comely\AppKernel\Exception\AppKernelException
+     * @throws \Comely\AppKernel\Exception\ServicesException
+     * @throws \Comely\IO\Session\Exception\SessionException
+     */
+    public function security(): Security
+    {
+        if (!$this->security) {
+            $this->security = new Security($this->session());
+        }
+
+        return $this->security;
     }
 
     /**
