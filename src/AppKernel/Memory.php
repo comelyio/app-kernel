@@ -57,7 +57,7 @@ class Memory
 
     /**
      * @param Query $query
-     * @return object|null
+     * @return mixed|null
      * @throws MemoryException
      */
     public function get(Query $query)

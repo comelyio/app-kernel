@@ -115,7 +115,7 @@ class Query
 
     /**
      * @param \Closure|null $callback
-     * @return null|object
+     * @return mixed|null
      * @throws MemoryException
      */
     public function fetch(?\Closure $callback = null)
