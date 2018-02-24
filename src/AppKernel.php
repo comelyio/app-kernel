@@ -23,6 +23,7 @@ use Comely\AppKernel\Exception\AppKernelException;
 use Comely\AppKernel\Exception\BootstrapException;
 use Comely\AppKernel\Exception\ConfigException;
 use Comely\AppKernel\Exception\ServicesException;
+use Comely\AppKernel\Http;
 use Comely\AppKernel\Memory;
 use Comely\AppKernel\Services;
 use Comely\AppKernel\Singleton;
@@ -82,6 +83,8 @@ class AppKernel extends Singleton
     private $services;
     /** @var EventsHandler */
     private $events;
+    /** @var null */
+    private $http;
 
     /**
      * @param array $options
@@ -406,5 +409,18 @@ class AppKernel extends Singleton
         }
 
         return $this->memory;
+    }
+
+    /**
+     * @return Http
+     */
+    final public function http(): Http
+    {
+        if ($this->http) {
+            return $this->http;
+        }
+
+        $this->http = new Http();
+        return $this->http();
     }
 }

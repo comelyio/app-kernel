@@ -34,15 +34,23 @@ class Client
     public $port;
 
     /**
-     * User constructor.
-     * @param Headers $headers
+     * Client constructor.
      */
-    public function __construct(Headers $headers)
+    public function __construct()
     {
         $this->https = $_SERVER["HTTPS"] ? true : false;
         $this->ipAddress = $_SERVER["HTTP_CF_CONNECTING_IP"] ?? $_SERVER["REMOTE_ADDR"] ?? null;
+        $this->port = $_SERVER["SERVER_PORT"] ? intval($_SERVER["SERVER_PORT"]) : null;
+    }
+
+    /**
+     * @param Headers $headers
+     * @return Client
+     */
+    public function headers(Headers $headers): self
+    {
         $this->origin = $headers->get("referer");
         $this->agent = $headers->get("user-agent");
-        $this->port = $_SERVER["SERVER_PORT"] ? intval($_SERVER["SERVER_PORT"]) : null;
+        return $this;
     }
 }

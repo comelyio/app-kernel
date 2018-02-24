@@ -30,8 +30,6 @@ use Comely\Knit\Template;
  */
 abstract class GenericController extends AppController
 {
-    /** @var null|Security */
-    private $security;
     /** @var null|Knit */
     private $knit;
     /** @var Messages */
@@ -51,16 +49,12 @@ abstract class GenericController extends AppController
     /**
      * @return Security
      * @throws \Comely\AppKernel\Exception\AppKernelException
-     * @throws \Comely\AppKernel\Exception\ServicesException
+     * @throws \Comely\AppKernel\Exception\BootstrapException
      * @throws \Comely\IO\Session\Exception\SessionException
      */
     public function security(): Security
     {
-        if (!$this->security) {
-            $this->security = new Security($this->session());
-        }
-
-        return $this->security;
+        return $this->app->http()->security();
     }
 
     /**
@@ -209,7 +203,7 @@ abstract class GenericController extends AppController
         $template->assign("flashMessages", $flashMessages);
         $template->assign("errors", $this->app->errorHandler()->errors());
         $template->assign("config", $this->app->config()->project()->array());
-        $template->assign("client", $this->client);
+        $template->assign("client", $this->client());
 
         // Default response type (despite of ACCEPT header)
         $this->response()->format("text/html");
