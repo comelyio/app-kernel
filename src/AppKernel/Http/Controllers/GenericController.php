@@ -205,7 +205,7 @@ abstract class GenericController extends AppController
 
         $template->assign("flashMessages", $flashMessages);
         $template->assign("errors", $this->app->errorHandler()->errors());
-        $template->assign("config", $this->app->config()->project()->array());
+        $template->assign("project", $this->app->config()->project()->array());
         $template->assign("client", $this->client());
 
         // Default response type (despite of ACCEPT header)
