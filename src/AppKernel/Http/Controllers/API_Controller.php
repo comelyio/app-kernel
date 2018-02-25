@@ -36,7 +36,7 @@ abstract class API_Controller extends AppController
         $this->response()->format("application/json");
 
         // Prepare response
-        $this->response()->set("success", false);
+        $this->response()->set("status", false);
         $this->response()->set("message", null);
 
         // Controller method
@@ -47,9 +47,9 @@ abstract class API_Controller extends AppController
             if (!method_exists($this, $controllerMethod)) {
                 throw new AppControllerException(
                     sprintf(
-                        'Requested method "%s" not found in API controller "%s" class',
-                        $controllerMethod,
-                        get_called_class()
+                        'Endpoint "%s" does not support "%s" method',
+                        get_called_class(),
+                        strtoupper($controllerMethod)
                     )
                 );
             }
