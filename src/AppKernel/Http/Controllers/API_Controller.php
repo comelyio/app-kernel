@@ -60,11 +60,30 @@ abstract class API_Controller extends AppController
             $this->response()->set("message", $e->getMessage());
 
             if ($this->app->dev()) {
-                $this->response()->set("trace", $e->getTrace());
+                $this->response()->set("caught", get_class($e));
+                $this->response()->set("file", $e->getFile());
+                $this->response()->set("line", $e->getLine());
+                $this->response()->set("trace", $this->getExceptionTrace($e));
             }
         }
 
+        if ($this->app->dev()) {
+            $this->response()->set("errors", $this->app->errorHandler()->errors()); // Errors
+        }
+
         $this->onFinish(); // Event callback: onFinish
+    }
+
+    /**
+     * @param \Exception $e
+     * @return array
+     */
+    private function getExceptionTrace(\Exception $e): array
+    {
+        return array_map(function (array $trace) {
+            unset($trace["args"]);
+            return $trace;
+        }, $e->getTrace());
     }
 
     /**
