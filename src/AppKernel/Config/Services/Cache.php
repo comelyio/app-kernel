@@ -23,6 +23,7 @@ use Comely\AppKernel\Exception\ConfigException;
  * @method string engine()
  * @method string host()
  * @method int port()
+ * @method int timeOut()
  * @method bool terminate()
  */
 class Cache extends AbstractConfigNode
