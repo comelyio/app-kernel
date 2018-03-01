@@ -95,7 +95,9 @@ class Services
         }
 
         $cache = new Cache();
-        $cache->addServer($engine, $cacheConfig->host(), $cacheConfig->port());
+        $cache->addServer($engine, $cacheConfig->host(), $cacheConfig->port())
+            ->setTimeout($cacheConfig->timeOut());
+
         try {
             $cache->connect();
         } catch (CacheException $e) {
