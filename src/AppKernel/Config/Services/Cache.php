@@ -73,7 +73,7 @@ class Cache extends AbstractConfigNode
         // Time out
         $timeOut = $options["time_out"] ?? $options["timeOut"] ?? $options["timeout"] ?? null;
         if (!is_int($timeOut) || $timeOut <= 0) {
-            throw ConfigException::PropError('services.cache', 'Property "timeout" must be a positive integer');
+            throw ConfigException::PropError('services.cache', 'Property "time_out" must be a positive integer');
         }
 
         $this->timeOut = $timeOut;
