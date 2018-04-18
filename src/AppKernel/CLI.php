@@ -84,6 +84,22 @@ class CLI
     }
 
     /**
+     * @return array
+     */
+    public function args(): array
+    {
+        return $this->args;
+    }
+
+    /**
+     * @return array
+     */
+    public function flags(): array
+    {
+        return $this->flags;
+    }
+
+    /**
      * @return void
      */
     public function bootstrap(): void
@@ -98,7 +114,7 @@ class CLI
                 "loadCachedConfig" => true, // Cached configuration?
             ];
 
-            if(!class_exists('\App')) {
+            if (!class_exists('\App')) {
                 throw new CLI_Exception('Class \App not found');
             }
 
@@ -125,7 +141,7 @@ class CLI
             VividShell::Print("");
             VividShell::Print("{yellow}Caught:{/} {red}{b}%s{/}", 0, [$t instanceof \Exception ? get_class($t) : "Fatal Error"]);
             VividShell::Print("");
-            VividShell::Print($t->getMessage(), 0);
+            VividShell::Print("\t{cyan}" . $t->getMessage(), 0);
             VividShell::Print("");
             VividShell::Print("{yellow}File:{/} %s", 0, [$t->getFile()]);
             VividShell::Print("{yellow}Line:{/} {cyan}%d", 0, [$t->getLine()]);
@@ -151,7 +167,7 @@ class CLI
         VividShell::Print("Loading Job: ", $this->sleep(0), null, "");
         VividShell::Repeat(".", rand(5, 10), $this->sleep(150), "");
         if (!class_exists($jobClass) || !is_a($jobClass, '\Comely\AppKernel\CLI\AbstractJob', true)) {
-            VividShell::Print(" {red}{b}{invert} %s {/}", $this->sleep(0), [$jobClass]);
+            VividShell::Print(" {red}{invert} %s {/}", $this->sleep(0), [$jobClass]);
             VividShell::Print("");
 
             throw new CLI_Exception(sprintf('Job class "%s" not found', $jobClass));
@@ -185,7 +201,7 @@ class CLI
         array_map(function ($line) use (&$lineNum) {
             $lineNum++;
             $eol = $lineNum !== 2 ? PHP_EOL : "";
-            VividShell::Print("{magenta}{b}" . $line, $this->sleep(0), null, $eol);
+            VividShell::Print("{magenta}{invert}" . $line, $this->sleep(0), null, $eol);
             if ($lineNum === 2) {
                 VividShell::Print(' {gray}v%s', $this->sleep(0), [@constant("App::VERSION") ?? "0.0.0"]);
             }
@@ -201,7 +217,7 @@ class CLI
     private function header(): void
     {
         VividShell::Print("{invert}{yellow} Comely IO {/} {grey}v%s", $this->sleep(300), [Comely::VERSION]);
-        VividShell::Print("{invert}{magenta} Comely App Kernel {/} {gray}v%s", $this->sleep(300), [AppKernel::VERSION]);
+        VividShell::Print("{invert}{cyan} Comely App Kernel {/} {gray}v%s", $this->sleep(300), [AppKernel::VERSION]);
         VividShell::Print("");
     }
 
