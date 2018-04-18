@@ -53,8 +53,8 @@ class CLI
 
         // Process arguments into actual args and flags
         foreach ($passed as $arg) {
-            if (!is_string($arg)) {
-                continue;  // Not a string? Unlikely, but has to be checked
+            if (!is_string($arg) || !$arg) {
+                continue;  // Not a string? (or an empty string) Unlikely, but has to be checked
             }
 
             // Is an argument?
@@ -93,7 +93,7 @@ class CLI
         try {
             // AppKernel Options
             $options = [
-                "rootPath" => dirname(__FILE__, 3),
+                "rootPath" => dirname(__FILE__, 6),
                 "dev" => true, // Development mode: FALSE
                 "loadCachedConfig" => true, // Cached configuration?
             ];
