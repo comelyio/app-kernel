@@ -21,7 +21,8 @@
     "php": ">=7.1.0",
     "comelyio/comely": "*",
     "comelyio/fluent": "*",
-    "comelyio/knit": "*"
+    "comelyio/knit": "*",
+    "comelyio/vivid-shell": "0.1.5"
   },
   "autoload": {
     "psr-4": {
@@ -30,5 +31,6 @@
     "files": [
       "src/AppKernel.php"
     ]
-  }
+  },
+  "minimum-stability": "dev"
 }
