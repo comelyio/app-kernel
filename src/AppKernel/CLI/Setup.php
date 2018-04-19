@@ -47,17 +47,17 @@ class Setup
         }
 
         // Force flag
-        if (isset($flags["force"]) || isset($flags["f"])) {
+        if (array_key_exists("flag", $flags) || array_key_exists("f", $flags)) {
             $this->force = true;
         }
 
         // Cached config?
-        if (isset($flags["nocache"])) {
+        if (array_key_exists("nocache", $flags)) {
             $this->cachedConfig = false;
         }
 
         // Quick run (with no sleep/delay in-between lines)
-        if (isset($flags["quick"]) || isset($flags["q"])) {
+        if (array_key_exists("quick", $flags) || array_key_exists("q", $flags)) {
             $this->noSleep = true;
         }
     }
