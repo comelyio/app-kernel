@@ -23,9 +23,9 @@ use Comely\AppKernel;
 abstract class AbstractJob
 {
     /** @var AppKernel */
-    private $app;
+    protected $app;
     /** @var AppKernel\CLI */
-    private $cli;
+    protected $cli;
 
     /**
      * AbstractJob constructor.
