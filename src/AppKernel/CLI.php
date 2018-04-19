@@ -162,7 +162,8 @@ class CLI
      */
     private function run()
     {
-        $jobClass = $this->args[0] ?? "console";
+        $jobClass = "bin\\";
+        $jobClass .= $this->args[0] ?? "console";
 
         VividShell::Print("Loading Job: ", $this->sleep(0), null, "");
         VividShell::Repeat(".", rand(5, 10), $this->sleep(150), "");
