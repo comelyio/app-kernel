@@ -344,7 +344,7 @@ class AppKernel extends Singleton
      * @throws AppKernelException
      * @throws TranslatorException
      */
-    final public function translator(): Translator
+    public function translator(): Translator
     {
         return $this->services->translator();
     }
