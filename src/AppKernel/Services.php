@@ -28,6 +28,7 @@ use Comely\IO\Session\ComelySession;
 use Comely\IO\Session\Exception\SessionException;
 use Comely\IO\Session\Session;
 use Comely\IO\Session\Storage\Disk;
+use Comely\IO\Translator\Exception\LanguageException;
 use Comely\IO\Translator\Exception\TranslatorException;
 use Comely\IO\Translator\Translator;
 use Comely\Knit\Exception\KnitException;
@@ -141,6 +142,15 @@ class Services
 
         if ($caching) {
             $translator->cacheDirectory($this->kernel->directories()->cache());
+        }
+
+        // Current language
+        try {
+            $currentLanguage = $_COOKIE["COMELYLANG"] ?? $translatorConfig->fallBack() ?? null;
+            $translator->language($currentLanguage);
+        } catch (LanguageException $e) {
+            trigger_error('Failed to set current language', E_USER_WARNING);
+            trigger_error($e->getMessage(), E_USER_WARNING);
         }
 
         $this->translator = $translator;
