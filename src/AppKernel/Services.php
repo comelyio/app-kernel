@@ -24,6 +24,8 @@ use Comely\IO\Cipher\Exception\CipherException;
 use Comely\IO\Cipher\Keychain\CipherKey;
 use Comely\IO\HttpRouter\Exception\HttpRouterException;
 use Comely\IO\HttpRouter\Router;
+use Comely\IO\Mailer\Agents\SMTP;
+use Comely\IO\Mailer\Mailer;
 use Comely\IO\Session\ComelySession;
 use Comely\IO\Session\Exception\SessionException;
 use Comely\IO\Session\Session;
@@ -56,6 +58,8 @@ class Services
     private $knit;
     /** @var null|Router */
     private $router;
+    /** @var null|Mailer */
+    private $mailer;
 
     /**
      * Services constructor.
@@ -280,6 +284,55 @@ class Services
 
         $this->router = $router;
         return $this->router;
+    }
+
+    /**
+     * @return Mailer
+     * @throws ServicesException
+     * @throws \Comely\IO\Mailer\Exception\MessageException
+     */
+    public function mailer(): Mailer
+    {
+        if ($this->mailer) { // Already registered?
+            return $this->mailer;
+        }
+
+        $mailerConfig = $this->kernel->config()->services()->mailer();
+        if (!$mailerConfig instanceof AppKernel\Config\Services\Mailer) {
+            throw ServicesException::ServiceError("mailer", 'No configuration found');
+        }
+
+        $mailer = new Mailer();
+        $mailer->sender()
+            ->name($mailerConfig->senderName())
+            ->email($mailerConfig->senderEmail());
+
+        // Agent
+        if ($mailerConfig->agent() === "smtp") {
+            $smtpConfig = $mailerConfig->smtp();
+            if (!$smtpConfig instanceof AppKernel\Config\Services\MailerSMTP) {
+                throw ServicesException::ServiceError("mailer", 'SMTP agent configuration not found');
+            }
+
+            $username = $smtpConfig->username();
+            $password = $smtpConfig->password();
+            $serverName = $smtpConfig->serverName();
+
+            $smtp = (new SMTP($smtpConfig->host(), $smtpConfig->port(), $smtpConfig->timeOut()))
+                ->useTLS($smtpConfig->tls());
+            if ($username && $password) { // Authentication credentials
+                $smtp->authCredentials($username, $password);
+            }
+
+            if ($serverName) { // Server Name
+                $smtp->serverName($serverName);
+            }
+
+            $mailer->agent($smtp); // Bind agent
+        }
+
+        $this->mailer = $mailer;
+        return $this->mailer;
     }
 
     /**

@@ -38,6 +38,7 @@ use Comely\IO\FileSystem\Disk\Directory;
 use Comely\IO\FileSystem\Exception\DiskException;
 use Comely\IO\HttpRouter\Exception\HttpRouterException;
 use Comely\IO\HttpRouter\Router;
+use Comely\IO\Mailer\Mailer;
 use Comely\IO\Session\ComelySession;
 use Comely\IO\Session\Exception\SessionException;
 use Comely\IO\Translator\Exception\TranslatorException;
@@ -376,6 +377,16 @@ class AppKernel extends Singleton
     final public function router(): Router
     {
         return $this->services->router();
+    }
+
+    /**
+     * @return Mailer
+     * @throws IO\Mailer\Exception\MessageException
+     * @throws ServicesException
+     */
+    final public function mailer(): Mailer
+    {
+        return $this->services->mailer();
     }
 
     /**

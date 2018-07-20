@@ -33,7 +33,7 @@ class Mailer extends AbstractConfigNode
     protected $senderName;
     /** @var string */
     protected $senderEmail;
-    /** @var MailerSMTP */
+    /** @var null|MailerSMTP */
     protected $smtp;
 
     /**
