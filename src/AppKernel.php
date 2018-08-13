@@ -49,6 +49,7 @@ use Comely\Knit\Knit;
 /**
  * Class AppKernel
  * @package Comely\AppKernel
+ * @method void onLoad
  */
 class AppKernel extends Singleton
 {
