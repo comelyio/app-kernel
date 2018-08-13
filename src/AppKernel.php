@@ -166,6 +166,11 @@ class AppKernel extends Singleton
         $this->databases = new Databases($this); // Databases
         $this->services = new Services($this); // Services
         $this->events = new EventsHandler();
+
+        // Callback onLoad
+        if (method_exists($this, "onLoad")) {
+            call_user_func([$this, "onLoad"]);
+        }
     }
 
     /**
