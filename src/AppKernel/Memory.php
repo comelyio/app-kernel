@@ -56,6 +56,14 @@ class Memory
     }
 
     /**
+     * @return void
+     */
+    public function flush(): void
+    {
+        $this->instances = [];
+    }
+
+    /**
      * @param Query $query
      * @return mixed|null
      * @throws MemoryException
