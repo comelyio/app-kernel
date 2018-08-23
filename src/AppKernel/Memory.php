@@ -30,6 +30,9 @@ class Memory
     /** @var null|Cache */
     private $cache;
 
+    /**
+     * Memory constructor.
+     */
     public function __construct()
     {
         $this->instances = [];
