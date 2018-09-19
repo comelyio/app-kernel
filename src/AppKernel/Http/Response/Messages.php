@@ -40,12 +40,14 @@ class Messages
     /**
      * @param string $type
      * @param string $message
+     * @param null|string $param
      */
-    private function append(string $type, string $message): void
+    private function append(string $type, string $message, ?string $param = null): void
     {
         $this->messages[] = [
             "type" => $type,
-            "message" => $message
+            "message" => $message,
+            "param" => $param
         ];
     }
 
