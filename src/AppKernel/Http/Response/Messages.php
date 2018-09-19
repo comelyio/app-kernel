@@ -53,41 +53,45 @@ class Messages
 
     /**
      * @param string $message
+     * @param null|string $param
      * @return Messages
      */
-    public function info(string $message): self
+    public function info(string $message, ?string $param = null): self
     {
-        $this->append("info", $message);
+        $this->append("info", $message, $param);
         return $this;
     }
 
     /**
      * @param string $message
+     * @param null|string $param
      * @return Messages
      */
-    public function success(string $message): self
+    public function success(string $message, ?string $param = null): self
     {
-        $this->append("success", $message);
+        $this->append("success", $message, $param);
         return $this;
     }
 
     /**
      * @param string $message
+     * @param null|string $param
      * @return Messages
      */
-    public function warning(string $message): self
+    public function warning(string $message, ?string $param = null): self
     {
-        $this->append("warning", $message);
+        $this->append("warning", $message, $param);
         return $this;
     }
 
     /**
      * @param string $message
+     * @param null|string $param
      * @return Messages
      */
-    public function danger(string $message): self
+    public function danger(string $message, ?string $param = null): self
     {
-        $this->append("danger", $message);
+        $this->append("danger", $message, $param);
         return $this;
     }
 

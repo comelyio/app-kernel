@@ -108,7 +108,8 @@ abstract class GenericController extends AppController
                 throw $e; // Throw caught exception so it may be picked by Exception Handler (screen)
             }
 
-            $this->messages->danger($e->getMessage());
+            $param = $e instanceof AppControllerException ? $e->getParam() : null;
+            $this->messages->danger($e->getMessage(), $param);
             if ($this->app->dev()) {
                 $this->response()->set("caught", get_class($e));
                 $this->response()->set("file", $e->getFile());

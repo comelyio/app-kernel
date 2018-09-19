@@ -59,6 +59,13 @@ abstract class API_Controller extends AppController
         } catch (ComelyException $e) {
             $this->response()->set("message", $e->getMessage());
 
+            if ($e instanceof AppControllerException) {
+                $param = $e->getParam();
+                if ($param) {
+                    $this->response()->set("param", $param);
+                }
+            }
+
             if ($this->app->dev()) {
                 $this->response()->set("caught", get_class($e));
                 $this->response()->set("file", $e->getFile());

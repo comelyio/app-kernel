@@ -22,5 +22,25 @@ use Comely\AppKernel\Exception\AppKernelException;
  */
 class AppControllerException extends AppKernelException
 {
+    /** @var null|string */
+    protected $param;
+
+    /**
+     * @param string $param
+     * @return AppControllerException
+     */
+    public function setParam(string $param): self
+    {
+        $this->param = $param;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getParam(): ?string
+    {
+        return $this->param;
+    }
 }
 
