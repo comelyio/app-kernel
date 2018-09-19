@@ -109,7 +109,7 @@ class Screen
                   crossorigin="anonymous">
             <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-            <title><?php if ($this->projectName) printf('%s &mdash; ', $this->projectName); ?>Comely Framework Kernel
+            <title><?php if ($this->projectName) printf('%s &mdash; ', $this->projectName); ?>Comely App Kernel
                 v<?php print $this->version; ?></title>
             <style type="text/css">
                 body {
