@@ -18,8 +18,8 @@
     }
   ],
   "require": {
-    "php": ">=7.1.0",
-    "comelyio/comely": "*",
+    "php": "^7.1.0",
+    "comelyio/comely": "^2.0.0",
     "comelyio/fluent": "*",
     "comelyio/knit": "*",
     "comelyio/vivid-shell": "0.1.5"
