@@ -46,6 +46,7 @@ class Services extends AbstractConfigNode
     /**
      * Services constructor.
      * @param array $services
+     * @throws \Comely\AppKernel\Exception\ConfigException
      */
     public function __construct(array $services)
     {
