@@ -20,8 +20,8 @@
   "require": {
     "php": "^7.1.0",
     "comelyio/comely": "^2.0.0",
-    "comelyio/fluent": "*",
-    "comelyio/knit": "*",
+    "comelyio/fluent": "^1.0.0",
+    "comelyio/knit": "^2.0.0",
     "comelyio/vivid-shell": "0.1.5"
   },
   "autoload": {
