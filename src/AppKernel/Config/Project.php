@@ -58,7 +58,7 @@ class Project extends AbstractConfigNode
             $this->domain = substr($this->domain, 4);
         }
 
-        if (!preg_match('/^[a-z0-9\-]+(\.[a-z]{2,8}){1,}$/i', $this->domain)) {
+        if (!preg_match('/^[a-z0-9\-]+(\.[a-z0-9\-]+)*(\.[a-z]{2,8}){1,}$/i', $this->domain)) {
             throw ConfigException::PropError('project.domain', 'Invalid domain name');
         }
 
