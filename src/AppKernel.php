@@ -56,9 +56,9 @@ class AppKernel extends Singleton
     /** string App Name */
     public const NAME = 'Comely App Kernel';
     /** string Comely App Kernel Version (Major.Minor.Release-Suffix) */
-    public const VERSION = "1.0.0";
+    public const VERSION = "1.0.1";
     /** int Comely App Kernel Version (Major * 10000 + Minor * 100 + Release) */
-    public const VERSION_ID = 10000;
+    public const VERSION_ID = 10001;
 
     protected const DIR_CONFIG = "config";
     protected const DIR_CACHE = "cache";
